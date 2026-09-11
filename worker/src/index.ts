@@ -14,7 +14,12 @@ export interface Env {
 const app = new Hono<{ Bindings: Env }>();
 
 app.use('*', cors({
-  origin: ['http://localhost:5173', 'https://receiptflow.pages.dev'],
+  origin: (origin) => {
+    if (!origin) return origin;
+    // Allow localhost and any Cloudflare Pages domain
+    if (origin.includes('localhost') || origin.endsWith('.pages.dev')) return origin;
+    return 'https://receiptflow.pages.dev';
+  },
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
