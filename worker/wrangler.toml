@@ -7,25 +7,14 @@ compatibility_flags = ["nodejs_compat"]
 [[d1_databases]]
 binding = "DB"
 database_name = "receiptflow-db"
-database_id = ""  # Fill after: wrangler d1 create receiptflow-db
-
-# KV for sessions (optional, can use D1)
-[[kv_namespaces]]
-binding = "SESSIONS"
-id = ""  # Fill after: wrangler kv namespace create "SESSIONS"
-preview_id = ""
+database_id = ""
 
 # Environment variables
 [vars]
-JWT_SECRET = ""  # Generate with: openssl rand -base64 32
+JWT_SECRET = ""
 JWT_EXPIRY = "7d"
-APP_URL = "https://receiptflow.pages.dev"  # Update after Pages deploy
+APP_URL = "https://receiptflow.pages.dev"
 
 # Limits
 [limits]
-cpu_ms = 50000  # 50 seconds for OCR
-
-# Custom build
-[build]
-command = "npm run build"
-watch_dir = "src"
+cpu_ms = 50000

@@ -1,10 +1,25 @@
 import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LogIn, UserPlus, Eye, EyeOff, ArrowLeft } from 'lucide-react';
+import { LogIn, UserPlus, Eye, EyeOff, ArrowLeft, Mail, Lock, User } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 type Mode = 'login' | 'signup';
+
+function getPasswordStrength(password: string): { score: number; label: string; color: string } {
+  let score = 0;
+  if (password.length >= 8) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[a-z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+  
+  if (score <= 1) return { score, label: 'Weak', color: 'var(--color-rose-500)' };
+  if (score <= 2) return { score, label: 'Fair', color: 'var(--color-amber-500)' };
+  if (score <= 3) return { score, label: 'Good', color: 'var(--color-emerald-500)' };
+  if (score <= 4) return { score, label: 'Strong', color: 'var(--color-brand-500)' };
+  return { score, label: 'Very Strong', color: 'var(--color-emerald-600)' };
+}
 
 export function AuthPage() {
   const navigate = useNavigate();
@@ -20,6 +35,7 @@ export function AuthPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isAuthenticated) navigate('/', { replace: true });
@@ -163,26 +179,29 @@ export function AuthPage() {
                 <label htmlFor="auth-name" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
                   Full Name
                 </label>
-                <input
-                  ref={nameRef}
-                  id="auth-name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  onKeyDown={(e) => handleKeyDown(e, emailRef)}
-                  className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
-                  style={{
-                    backgroundColor: 'var(--bg-input)',
-                    border: '1px solid var(--border-secondary)',
-                    color: 'var(--text-primary)',
-                  }}
-                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--border-focus)'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border-secondary)'}
-                  placeholder="John Doe"
-                  autoComplete="name"
-                  required
-                  aria-required="true"
-                />
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2" size={18} style={{ color: 'var(--text-tertiary)' }} aria-hidden="true" />
+                  <input
+                    ref={nameRef}
+                    id="auth-name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    onKeyDown={(e) => handleKeyDown(e, emailRef)}
+                    className="w-full rounded-xl px-4 py-3 pl-10 text-sm outline-none transition-all"
+                    style={{
+                      backgroundColor: 'var(--bg-input)',
+                      border: '1px solid var(--border-secondary)',
+                      color: 'var(--text-primary)',
+                    }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = 'var(--border-focus)'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border-secondary)'}
+                    placeholder="John Doe"
+                    autoComplete="name"
+                    required
+                    aria-required="true"
+                  />
+                </div>
               </div>
             )}
 
@@ -190,14 +209,16 @@ export function AuthPage() {
               <label htmlFor="auth-email" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
                 Email Address
               </label>
-              <input
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2" size={18} style={{ color: 'var(--text-tertiary)' }} aria-hidden="true" />
+                <input
                 ref={emailRef}
                 id="auth-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={(e) => handleKeyDown(e, mode === 'signup' ? nameRef : undefined)}
-                className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
+                onKeyDown={(e) => handleKeyDown(e, mode === 'signup' ? passwordRef : undefined)}
+                className="w-full rounded-xl px-4 py-3 pl-10 text-sm outline-none transition-all"
                 style={{
                   backgroundColor: 'var(--bg-input)',
                   border: '1px solid var(--border-secondary)',
@@ -210,6 +231,7 @@ export function AuthPage() {
                 required
                 aria-required="true"
               />
+              </div>
             </div>
 
             <div>
@@ -217,12 +239,15 @@ export function AuthPage() {
                 Password
               </label>
               <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2" size={18} style={{ color: 'var(--text-tertiary)' }} aria-hidden="true" />
                 <input
+                  ref={passwordRef}
                   id="auth-password"
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-xl px-4 py-3 pr-12 text-sm outline-none transition-all"
+                  onKeyDown={(e) => handleKeyDown(e, mode === 'signup' ? undefined : undefined)}
+                  className="w-full rounded-xl px-4 py-3 pl-10 pr-12 text-sm outline-none transition-all"
                   style={{
                     backgroundColor: 'var(--bg-input)',
                     border: '1px solid var(--border-secondary)',
@@ -246,6 +271,26 @@ export function AuthPage() {
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
+              {mode === 'signup' && password && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="mt-2"
+                >
+                  <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${(getPasswordStrength(password).score / 5) * 100}%` }}
+                      className="h-full transition-all duration-300"
+                      style={{ backgroundColor: getPasswordStrength(password).color }}
+                    />
+                  </div>
+                  <p className="text-xs mt-1 text-right" style={{ color: getPasswordStrength(password).color }}>
+                    Password strength: {getPasswordStrength(password).label}
+                  </p>
+                </motion.div>
+              )}
             </div>
 
             {mode === 'signup' && (
@@ -254,25 +299,28 @@ export function AuthPage() {
                   <label htmlFor="auth-confirm" className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>
                     Confirm Password
                   </label>
-                  <input
-                    id="auth-confirm"
-                    type={showPassword ? 'text' : 'password'}
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
-                    style={{
-                      backgroundColor: 'var(--bg-input)',
-                      border: '1px solid var(--border-secondary)',
-                      color: 'var(--text-primary)',
-                    }}
-                    onFocus={(e) => e.currentTarget.style.borderColor = 'var(--border-focus)'}
-                    onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border-secondary)'}
-                    placeholder="Re-enter your password"
-                    autoComplete="new-password"
-                    required
-                    aria-required="true"
-                    minLength={8}
-                  />
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2" size={18} style={{ color: 'var(--text-tertiary)' }} aria-hidden="true" />
+                    <input
+                      id="auth-confirm"
+                      type={showPassword ? 'text' : 'password'}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className="w-full rounded-xl px-4 py-3 pl-10 text-sm outline-none transition-all"
+                      style={{
+                        backgroundColor: 'var(--bg-input)',
+                        border: '1px solid var(--border-secondary)',
+                        color: 'var(--text-primary)',
+                      }}
+                      onFocus={(e) => e.currentTarget.style.borderColor = 'var(--border-focus)'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border-secondary)'}
+                      placeholder="Re-enter your password"
+                      autoComplete="new-password"
+                      required
+                      aria-required="true"
+                      minLength={8}
+                    />
+                  </div>
                 </div>
 
                 <div className="flex items-start gap-3">
@@ -288,7 +336,7 @@ export function AuthPage() {
                   />
                   <label htmlFor="auth-terms" className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
                     I agree to the{' '}
-                    <Link to="/terms" target="_blank" className="underline" style={{ color: 'var(--color-brand-500)' }}>Terms &amp; Conditions</Link>
+                    <Link to="/terms" target="_blank" className="underline" style={{ color: 'var(--color-brand-500)' }}>Terms & Conditions</Link>
                     {' '}and{' '}
                     <Link to="/privacy" target="_blank" className="underline" style={{ color: 'var(--color-brand-500)' }}>Privacy Policy</Link>.
                     I understand that my data is stored locally in my browser.
