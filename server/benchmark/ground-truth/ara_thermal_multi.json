@@ -1,0 +1,13 @@
+{
+  "id": "ara_thermal_multi",
+  "expectedFields": {
+    "merchant": "مطعم الشام",
+    "items": [
+      { "quantity": 2, "name": "مشاوي مشكلة", "price": 35.00 },
+      { "quantity": 1, "name": "حمص", "price": 15.00 },
+      { "quantity": 3, "name": "مشروب غازي", "price": 5.00 },
+      { "quantity": 1, "name": "كنافة", "price": 20.00 }
+    ],
+    "total": 125.00
+  }
+}

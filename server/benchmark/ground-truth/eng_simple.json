@@ -1,0 +1,48 @@
+{
+  "id": "eng_simple",
+  "lines": [
+    "WALMART SUPERCENTER",
+    "Store #1234",
+    "123 Main Street",
+    "Springfield, IL 62701",
+    "",
+    "Date: 01/15/2024  Time: 14:32",
+    "Register: 05  Cashier: John",
+    "",
+    "2x Widget A        4.99",
+    "1x Gadget B       12.49",
+    "3x Cable C         2.99",
+    "",
+    "SUBTOTAL          29.44",
+    "TAX                2.36",
+    "TOTAL             31.80",
+    "",
+    "VISA ****1234",
+    "CHANGE             0.00",
+    "",
+    "THANK YOU FOR SHOPPING!"
+  ],
+  "width": 400,
+  "height": 600,
+  "expectedFields": {
+    "merchant": "WALMART SUPERCENTER",
+    "items": [
+      {
+        "quantity": 2,
+        "name": "Widget A",
+        "price": 4.99
+      },
+      {
+        "quantity": 1,
+        "name": "Gadget B",
+        "price": 12.49
+      },
+      {
+        "quantity": 3,
+        "name": "Cable C",
+        "price": 2.99
+      }
+    ],
+    "total": 31.8
+  }
+}

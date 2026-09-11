@@ -1,0 +1,12 @@
+{
+  "id": "ara_thermal_simple",
+  "expectedFields": {
+    "merchant": "سوبرماركت المدينة",
+    "items": [
+      { "quantity": 1, "name": "حليب كامل الدسم", "price": 4.50 },
+      { "quantity": 2, "name": "خبز أبيض", "price": 1.25 },
+      { "quantity": 1, "name": "جبنة بيضاء", "price": 8.75 }
+    ],
+    "total": 15.75
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "eng_small_text",
+  "lines": [
+    "CVS PHARMACY",
+    "Store #9012",
+    "",
+    "Date: 05/10/2024",
+    "",
+    "1x Aspirin        6.99",
+    "2x Bandages       3.49",
+    "1x Vitamin C      9.99",
+    "",
+    "SUBTOTAL         23.96",
+    "TAX               1.92",
+    "TOTAL            25.88",
+    "",
+    "CASH             30.00",
+    "CHANGE            4.12"
+  ],
+  "width": 300,
+  "height": 500,
+  "expectedFields": {
+    "merchant": "CVS PHARMACY",
+    "items": [
+      {
+        "quantity": 1,
+        "name": "Aspirin",
+        "price": 6.99
+      },
+      {
+        "quantity": 2,
+        "name": "Bandages",
+        "price": 3.49
+      },
+      {
+        "quantity": 1,
+        "name": "Vitamin C",
+        "price": 9.99
+      }
+    ],
+    "total": 25.88
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "ara_thermal_mixed",
+  "expectedFields": {
+    "merchant": "AL MAKTABA Bookstore",
+    "items": [
+      { "quantity": 1, "name": "كتاب البرمجة", "price": 45.00 },
+      { "quantity": 2, "name": "قلم أزرق", "price": 3.50 },
+      { "quantity": 1, "name": "دفتر ملاحظات A5", "price": 12.00 }
+    ],
+    "total": 64.00
+  }
+}

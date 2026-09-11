@@ -1,0 +1,80 @@
+{
+  "id": "eng_complex",
+  "lines": [
+    "TARGET",
+    "Store #5678",
+    "456 Oak Avenue",
+    "Chicago, IL 60601",
+    "",
+    "Date: 03/22/2024  Time: 09:15",
+    "Register: 12  Cashier: Sarah",
+    "",
+    "1x Organic Milk      4.29",
+    "2x Whole Wheat Bread 3.49",
+    "1x Free Range Eggs   5.99",
+    "3x Banana            0.69",
+    "1x Chicken Breast    8.99",
+    "2x Greek Yogurt      1.29",
+    "1x Pasta Sauce       3.79",
+    "1x Rice              4.49",
+    "",
+    "SUBTOTAL           40.17",
+    "TAX                 3.21",
+    "COUPON             -2.00",
+    "TOTAL              41.38",
+    "",
+    "MASTERCARD ****5678",
+    "CHANGE              0.00",
+    "",
+    "SAVINGS TODAY: $2.00",
+    "YOU SAVED 4.6%!"
+  ],
+  "width": 400,
+  "height": 800,
+  "expectedFields": {
+    "merchant": "TARGET",
+    "items": [
+      {
+        "quantity": 1,
+        "name": "Organic Milk",
+        "price": 4.29
+      },
+      {
+        "quantity": 2,
+        "name": "Whole Wheat Bread",
+        "price": 3.49
+      },
+      {
+        "quantity": 1,
+        "name": "Free Range Eggs",
+        "price": 5.99
+      },
+      {
+        "quantity": 3,
+        "name": "Banana",
+        "price": 0.69
+      },
+      {
+        "quantity": 1,
+        "name": "Chicken Breast",
+        "price": 8.99
+      },
+      {
+        "quantity": 2,
+        "name": "Greek Yogurt",
+        "price": 1.29
+      },
+      {
+        "quantity": 1,
+        "name": "Pasta Sauce",
+        "price": 3.79
+      },
+      {
+        "quantity": 1,
+        "name": "Rice",
+        "price": 4.49
+      }
+    ],
+    "total": 41.38
+  }
+}

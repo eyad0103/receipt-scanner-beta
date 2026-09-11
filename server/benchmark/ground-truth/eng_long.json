@@ -1,0 +1,109 @@
+{
+  "id": "eng_long",
+  "lines": [
+    "COSTCO WHOLESALE",
+    "Warehouse #3456",
+    "789 Commerce Drive",
+    "Seattle, WA 98101",
+    "",
+    "Date: 09/18/2024  Time: 11:45",
+    "Register: 22  Cashier: Mike",
+    "",
+    "1x Kirkland Water    4.99",
+    "2x Paper Towels     15.99",
+    "1x Trash Bags        9.99",
+    "3x Chicken Thigh     7.49",
+    "1x Salmon Fillet    12.99",
+    "2x Olive Oil         8.99",
+    "1x Almonds           9.99",
+    "4x Yogurt            0.89",
+    "1x Cheese            6.99",
+    "2x Bread             3.49",
+    "1x Butter            4.99",
+    "3x Apples            1.29",
+    "1x Laundry Detergent 11.99",
+    "",
+    "SUBTOTAL          134.85",
+    "TAX                 0.00",
+    "TOTAL             134.85",
+    "",
+    "VISA ****3456",
+    "CHANGE              0.00",
+    "",
+    "MEMBER SINCE 2015",
+    "TOTAL ITEMS: 21"
+  ],
+  "width": 400,
+  "height": 1000,
+  "expectedFields": {
+    "merchant": "COSTCO WHOLESALE",
+    "items": [
+      {
+        "quantity": 1,
+        "name": "Kirkland Water",
+        "price": 4.99
+      },
+      {
+        "quantity": 2,
+        "name": "Paper Towels",
+        "price": 15.99
+      },
+      {
+        "quantity": 1,
+        "name": "Trash Bags",
+        "price": 9.99
+      },
+      {
+        "quantity": 3,
+        "name": "Chicken Thigh",
+        "price": 7.49
+      },
+      {
+        "quantity": 1,
+        "name": "Salmon Fillet",
+        "price": 12.99
+      },
+      {
+        "quantity": 2,
+        "name": "Olive Oil",
+        "price": 8.99
+      },
+      {
+        "quantity": 1,
+        "name": "Almonds",
+        "price": 9.99
+      },
+      {
+        "quantity": 4,
+        "name": "Yogurt",
+        "price": 0.89
+      },
+      {
+        "quantity": 1,
+        "name": "Cheese",
+        "price": 6.99
+      },
+      {
+        "quantity": 2,
+        "name": "Bread",
+        "price": 3.49
+      },
+      {
+        "quantity": 1,
+        "name": "Butter",
+        "price": 4.99
+      },
+      {
+        "quantity": 3,
+        "name": "Apples",
+        "price": 1.29
+      },
+      {
+        "quantity": 1,
+        "name": "Laundry Detergent",
+        "price": 11.99
+      }
+    ],
+    "total": 134.85
+  }
+}
