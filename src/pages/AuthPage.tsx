@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LogIn, UserPlus, Eye, EyeOff, ArrowLeft, Mail, Lock, User } from 'lucide-react';
+import { LogIn, UserPlus, Eye, EyeOff, ArrowLeft, Mail, Lock, User, ReceiptText } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 type Mode = 'login' | 'signup';
@@ -105,10 +105,10 @@ export function AuthPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <div
-            className="inline-flex h-14 w-14 items-center justify-center rounded-2xl text-xl font-bold text-white mb-4"
+            className="inline-flex h-14 w-14 items-center justify-center rounded-2xl text-3xl text-white mb-4"
             style={{ background: 'linear-gradient(135deg, var(--color-brand-500), var(--color-emerald-500))' }}
           >
-            R
+            <ReceiptText size={28} />
           </div>
           <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>
             {mode === 'login' ? 'Welcome back' : 'Create your account'}
