@@ -24,30 +24,6 @@ const AuthContext = createContext<AuthContextType | null>(null);
 const API_BASE = '/api';
 const SESSION_KEY = 'receiptflow_session';
 
-async function hashPasswordFallback(password: string): Promise<string> {
-  // Fallback for environments without crypto.subtle
-  let hash = 0;
-  const str = password + 'receiptflow_salt_v1';
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash;
-  }
-  return Math.abs(hash).toString(16).padStart(8, '0');
-}
-
-async function hashPassword(password: string): Promise<string> {
-  try {
-    if (typeof crypto !== 'undefined' && crypto.subtle) {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(password + 'receiptflow_salt_v1');
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-      return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-  } catch {}
-  return hashPasswordFallback(password);
-}
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<AuthState>({
     user: null,
@@ -60,7 +36,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const session = localStorage.getItem(SESSION_KEY);
       if (session) {
         try {
-          const { user, token } = JSON.parse(session);
+          const { token } = JSON.parse(session);
           // Verify token with backend
           const res = await fetch(`${API_BASE}/auth/verify`, {
             method: 'POST',

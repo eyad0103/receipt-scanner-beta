@@ -1,6 +1,6 @@
-import type { ReceiptData, ConfidenceReport, ScanResult, SavedReceipt } from '../types';
+import type { ReceiptData, ScanResult, SavedReceipt } from '../types';
 
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_BASE || '/api';
 const STORAGE_KEY = 'receiptflow_receipts';
 let _listeners: Array<() => void> = [];
 

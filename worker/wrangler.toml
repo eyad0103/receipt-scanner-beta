@@ -1,0 +1,31 @@
+name = "receiptflow-api"
+main = "src/index.ts"
+compatibility_date = "2024-09-11"
+compatibility_flags = ["nodejs_compat"]
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "receiptflow-db"
+database_id = ""  # Fill after: wrangler d1 create receiptflow-db
+
+# KV for sessions (optional, can use D1)
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = ""  # Fill after: wrangler kv namespace create "SESSIONS"
+preview_id = ""
+
+# Environment variables
+[vars]
+JWT_SECRET = ""  # Generate with: openssl rand -base64 32
+JWT_EXPIRY = "7d"
+APP_URL = "https://receiptflow.pages.dev"  # Update after Pages deploy
+
+# Limits
+[limits]
+cpu_ms = 50000  # 50 seconds for OCR
+
+# Custom build
+[build]
+command = "npm run build"
+watch_dir = "src"

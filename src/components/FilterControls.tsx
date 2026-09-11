@@ -49,14 +49,6 @@ function getPreset(filters: Filters): string {
   return 'custom';
 }
 
-function formatDisplay(dateStr: string): string {
-  if (!dateStr) return '';
-  const [y, m, d] = dateStr.split('-');
-  if (!y || !m || !d) return dateStr;
-  const date = new Date(Number(y), Number(m) - 1, Number(d));
-  return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
-}
-
 function DateInput({ label, value, onChange, id, ariaLabel }: { 
   label: string; 
   value: string; 

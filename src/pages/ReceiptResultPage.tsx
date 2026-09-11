@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Edit3, Save, RotateCcw, Trash2, Plus, X, ImageIcon, AlertTriangle, Clock, CreditCard, Tag, CheckCircle2 } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { getReceipt, updateReceipt, deleteReceipt } from '../api/client';
 import type { SavedReceipt, ReceiptItem } from '../types';
 import { formatCurrency, formatDate, formatTime } from '../utils/helpers';

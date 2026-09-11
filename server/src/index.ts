@@ -1,10 +1,15 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { config } from './config/index.js';
 import { receiptRouter } from './routes/receipts.js';
 import { authRouter } from './routes/auth.js';
 import { log } from './logging/index.js';
 import { initDatabase } from './db/database.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -14,8 +19,15 @@ app.use(express.json({ limit: '1mb', verify: (req: any, _res, buf) => { req.rawB
 app.use('/api/receipts', receiptRouter);
 app.use('/api/auth', authRouter);
 
-app.get('/', (_req, res) => {
-  res.json({ name: 'ReceiptFlow API', version: '1.0.0' });
+app.get('/api/health', (_req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Serve frontend static files in production
+const frontendDist = path.resolve(__dirname, '../../dist');
+app.use(express.static(frontendDist));
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(frontendDist, 'index.html'));
 });
 
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
