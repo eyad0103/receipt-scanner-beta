@@ -7,14 +7,10 @@ compatibility_flags = ["nodejs_compat"]
 [[d1_databases]]
 binding = "DB"
 database_name = "receiptflow-db"
-database_id = ""
+database_id = "e618c17c-7d2b-4e64-926b-c18e6be03fad"
 
 # Environment variables
 [vars]
 JWT_SECRET = ""
 JWT_EXPIRY = "7d"
 APP_URL = "https://receiptflow.pages.dev"
-
-# Limits
-[limits]
-cpu_ms = 50000
