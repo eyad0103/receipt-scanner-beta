@@ -1,0 +1,14 @@
+name = "receiptflow-api"
+main = "src/index.ts"
+compatibility_date = "2024-09-11"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "receiptflow-db"
+database_id = "e618c17c-7d2b-4e64-926b-c18e6be03fad"
+
+[vars]
+JWT_SECRET = "wJ8kLmN9pQ2rS4tU6vW8xY0zA1bC3dE5fG7hJ9kLmN9pQ2rS4tU6vW8xY0zA1bC3dE5f"
+JWT_EXPIRY = "7d"
+APP_URL = "https://receiptflow.pages.dev"
